@@ -1,0 +1,21 @@
+Original Input,Canonical Name,Is Valid,Requires Review,Review Reason,Clusters
+Google Ads Editor,Google Ads Editor,true,false,"",16
+Safe Lifting,Safe Lifting,true,false,"",42
+Maintenance Supervision,Maintenance Supervision,true,false,"",31; 44
+Safety Culture,Safety Culture Management,true,true,Canonicalised from a concept to an applied skill,31; 42
+Tax Software Utilization,Tax Software Utilisation,true,false,"",20
+Sign Fabrication,Sign Fabrication,true,false,"",44
+Pressure Injury Management,Pressure Injury Management,true,false,"",49
+Organizational Aptitude,Organisational Skills,true,true,Canonicalised from a trait to a skill,35
+Cutting Basics,Cutting Basics,false,true,"Too generic, lacks professional context",""
+DFSS: Design for Six Sigma,Design for Six Sigma (DFSS),true,false,"",41; 43
+Injury Rehabilitation,Injury Rehabilitation,true,false,"",51
+Cyber Insurance,Cyber Insurance,true,true,"Borderline domain, validated as a specialised knowledge area",4; 23
+Constitutional Law,Constitutional Law,true,false,"",23
+MCSD,MCSD (Microsoft Certified Solutions Developer),true,true,Certification context unclear,1
+Construction Material Testing,Construction Material Testing,true,false,"",38
+Delegation,Delegation,true,false,"",31
+Franchise Research,Franchise Research,true,false,"",22
+Long Term Business Planning,Long-Term Business Planning,true,false,"",22
+Policy Issuance,Policy Issuance,true,true,"Context is ambiguous (e.g., insurance, HR, legal)",23
+Ticket Collection,Ticket Collection,false,true,Too low-level or task-oriented to be a standalone skill,""

@@ -1,0 +1,21 @@
+Original Input,Canonical Name,Is Valid,Requires Review,Review Reason,Clusters,Cluster Names,Domain IDs,Domain Names
+Google Ads Editor,Google Ads Editor,true,false,"",16,Digital Marketing & Growth,3,"Sales, Marketing & Customer Success"
+Safe Lifting,Safe Lifting,true,false,"",42,"Health, Safety & Environment",7,"Engineering, Manufacturing & Supply Chain"
+Maintenance Supervision,Maintenance Supervision,true,false,"",31; 44,Leadership & People Management; Skilled Trades & Industrial Maintenance,6; 7,"Leadership & Professional Development; Engineering, Manufacturing & Supply Chain"
+Safety Culture,Safety Culture Management,true,true,Canonicalised from a concept to an applied skill,31; 42,"Leadership & People Management; Health, Safety & Environment",6; 7,"Leadership & Professional Development; Engineering, Manufacturing & Supply Chain"
+Tax Software Utilization,Tax Software Utilisation,true,false,"",20,Finance & Accounting,4,"Business, Finance & Legal"
+Sign Fabrication,Sign Fabrication,true,false,"",44,Skilled Trades & Industrial Maintenance,7,"Engineering, Manufacturing & Supply Chain"
+Pressure Injury Management,Pressure Injury Management,true,false,"",49,Clinical Care & Nursing,8,Healthcare & Life Sciences
+Organizational Aptitude,Organisational Skills,true,true,Canonicalised from a trait to a skill,35,Personal Effectiveness & Productivity,6,Leadership & Professional Development
+Cutting Basics,Cutting Basics,false,true,"Too generic, lacks professional context","","","",""
+DFSS: Design for Six Sigma,Design for Six Sigma (DFSS),true,false,"",41; 43,"Lean, Six Sigma & Continuous Improvement; Manufacturing Quality Control",7,"Engineering, Manufacturing & Supply Chain"
+Injury Rehabilitation,Injury Rehabilitation,true,false,"",51,Allied Health & Therapeutic Services,8,Healthcare & Life Sciences
+Cyber Insurance,Cyber Insurance,true,true,"Borderline domain, validated as a specialised knowledge area",4; 23,"Cybersecurity & Information Security; Legal, Risk & Compliance",1; 4,"Technology & IT; Business, Finance & Legal"
+Constitutional Law,Constitutional Law,true,false,"",23,"Legal, Risk & Compliance",4,"Business, Finance & Legal"
+MCSD,MCSD (Microsoft Certified Solutions Developer),true,true,Certification context unclear,1,Software Development & Engineering,1,Technology & IT
+Construction Material Testing,Construction Material Testing,true,false,"",38,"Mechanical, Electrical & Civil Engineering",7,"Engineering, Manufacturing & Supply Chain"
+Delegation,Delegation,true,false,"",31,Leadership & People Management,6,Leadership & Professional Development
+Franchise Research,Franchise Research,true,false,"",22,Strategy & Business Management,4,"Business, Finance & Legal"
+Long Term Business Planning,Long-Term Business Planning,true,false,"",22,Strategy & Business Management,4,"Business, Finance & Legal"
+Policy Issuance,Policy Issuance,true,true,"Context is ambiguous (e.g., insurance, HR, legal)",23,"Legal, Risk & Compliance",4,"Business, Finance & Legal"
+Ticket Collection,Ticket Collection,false,true,Too low-level or task-oriented to be a standalone skill,"","","",""

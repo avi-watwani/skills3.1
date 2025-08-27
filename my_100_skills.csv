@@ -1,0 +1,101 @@
+Original Input,Canonical Name,Is Valid,Requires Review,Review Reason,Clusters,Cluster Names,Domain IDs,Domain Names
+Construction Site Protocol,Construction Site Protocol,true,false,"",38; 42,"Mechanical, Electrical & Civil Engineering; Health, Safety & Environment",7,"Engineering, Manufacturing & Supply Chain"
+Pathology Knowledge,Pathology,true,true,Borderline domain knowledge,49; 50,Clinical Care & Nursing; Biomedical Science & Pharmaceutical Research,8,Healthcare & Life Sciences
+U.S. Federal Information Security Management Act (FISMA),FISMA,true,false,"",4; 23,"Cybersecurity & Information Security; Legal, Risk & Compliance",1; 4,"Technology & IT; Business, Finance & Legal"
+Revaluations,Revaluation,false,true,Too ambiguous without context,"","","",""
+Journey Builder,Journey Builder,true,false,"",16,Digital Marketing & Growth,3,"Sales, Marketing & Customer Success"
+Apics,APICS,true,true,Certification context unclear,39; 40,Manufacturing & Production Operations; Supply Chain & Logistics,7,"Engineering, Manufacturing & Supply Chain"
+Piping Design,Piping Design,true,false,"",38; 45,"Mechanical, Electrical & Civil Engineering; Oil, Gas & Energy Engineering",7,"Engineering, Manufacturing & Supply Chain"
+Medicare/Medicaid Reimbursement,Medicare and Medicaid Reimbursement,true,false,"",20; 53,Finance & Accounting; Health Informatics & Administration,4; 8,"Business, Finance & Legal; Healthcare & Life Sciences"
+Cataloging Images,Cataloguing Images,true,true,Cluster mapping uncertain due to ambiguous context,11; 60,"Content Creation, Writing & Editing; Information & Library Science",2; 9,Design & Creative; Education & Human Services
+Brokerage Laws,Brokerage Law,true,false,"",23,"Legal, Risk & Compliance",4,"Business, Finance & Legal"
+Pipeline Assessment,Pipeline Assessment,false,true,"Too ambiguous without context (e.g., sales, software, energy)","","","",""
+Wills And Probate,Wills and Probate,true,false,"",23,"Legal, Risk & Compliance",4,"Business, Finance & Legal"
+Revenue Analysis,Revenue Analysis,true,false,"",20; 21,Finance & Accounting; Business Analysis & Intelligence,4,"Business, Finance & Legal"
+Cognos Analytics,Cognos Analytics,true,false,"",3; 21,"Data Science, Analytics & AI; Business Analysis & Intelligence",1; 4,"Technology & IT; Business, Finance & Legal"
+Equipment Checks,Equipment Checks,false,true,Too generic without context,"","","",""
+Land Valuation,Land Valuation,true,false,"",20; 25,Finance & Accounting; Real Estate & Property Management,4,"Business, Finance & Legal"
+Dashboard Creation,Dashboard Creation,true,false,"",3; 21,"Data Science, Analytics & AI; Business Analysis & Intelligence",1; 4,"Technology & IT; Business, Finance & Legal"
+Leasing Agreements,Leasing Agreements,true,false,"",23; 25,"Legal, Risk & Compliance; Real Estate & Property Management",4,"Business, Finance & Legal"
+Social Selling,Social Selling,true,false,"",15; 16,Sales & Business Development; Digital Marketing & Growth,3,"Sales, Marketing & Customer Success"
+Water Resource Management,Water Resource Management,true,false,"",38; 42,"Mechanical, Electrical & Civil Engineering; Health, Safety & Environment",7,"Engineering, Manufacturing & Supply Chain"
+VBA Excel,Excel VBA,true,false,"",1; 21,Software Development & Engineering; Business Analysis & Intelligence,1; 4,"Technology & IT; Business, Finance & Legal"
+Interactive Prototyping,Interactive Prototyping,true,false,"",9,UX/UI Design & Research,2,Design & Creative
+Malware and Hacking,Malware and Hacking,false,true,Compound or non-atomic term,"","","",""
+Information Technology,Information Technology,false,false,"","","","",""
+PC Proficiency,PC Proficiency,false,true,Too vague or generic,"","","",""
+Workers Compensation,Workers' Compensation,true,false,"",27; 29,Compensation & Benefits; HR Operations & Compliance,5,Human Resources & People Operations
+Basic Haircutting,Haircutting,true,true,Cluster mapping uncertain,"","","",""
+Facebook Marketing,Facebook Marketing,true,false,"",16,Digital Marketing & Growth,3,"Sales, Marketing & Customer Success"
+Nuclear Regulations,Nuclear Regulations,true,false,"",23; 42,"Legal, Risk & Compliance; Health, Safety & Environment",4; 7,"Business, Finance & Legal; Engineering, Manufacturing & Supply Chain"
+Design Aesthetics,Design Aesthetics,false,true,Too broad or subjective,"","","",""
+Chemical Compatibility,Chemical Compatibility,true,false,"",39; 42,"Manufacturing & Production Operations; Health, Safety & Environment",7,"Engineering, Manufacturing & Supply Chain"
+Material Sampling,Material Sampling,true,false,"",43; 46,Manufacturing Quality Control; Mining & Geosciences,7,"Engineering, Manufacturing & Supply Chain"
+Personal Development Plan,Personal Development Planning,true,false,"",30; 33,"Learning & Development; Coaching, Mentoring & Training",5; 6,Human Resources & People Operations; Leadership & Professional Development
+Sports Injury Management,Sports Injury Management,true,false,"",51; 65,"Allied Health & Therapeutic Services; Sports, Fitness & Wellness",8; 10,"Healthcare & Life Sciences; Hospitality, Retail & Events"
+Innovation In Recruitment,Innovation In Recruitment,false,true,"Describes a quality or approach, not a discrete skill","","","",""
+Tool Use Proficiency,Tool Use Proficiency,false,true,Too vague or generic,"","","",""
+Economic Capital,Economic Capital Management,true,false,"",20; 23,"Finance & Accounting; Legal, Risk & Compliance",4,"Business, Finance & Legal"
+Collaborating In Excel,Excel Collaboration,true,false,"",21,Business Analysis & Intelligence,4,"Business, Finance & Legal"
+Continuous Auditing,Continuous Auditing,true,false,"",20; 23,"Finance & Accounting; Legal, Risk & Compliance",4,"Business, Finance & Legal"
+Performance Alignment,Performance Alignment,false,true,"Vague business term or outcome, not a discrete skill","","","",""
+Vision Testing,Vision Testing,true,false,"",51,Allied Health & Therapeutic Services,8,Healthcare & Life Sciences
+Cross-Selling Strategies,Cross-Selling,true,false,"",15,Sales & Business Development,3,"Sales, Marketing & Customer Success"
+Security Procedures,Security Procedures,true,true,"Ambiguous term; could refer to physical, cyber, or other security domains","","","",""
+Seo Monitoring,SEO Monitoring,true,false,"",16,Digital Marketing & Growth,3,"Sales, Marketing & Customer Success"
+Tournament Rules,Tournament Rules,false,false,"","","","",""
+Project Designing,Project Design,true,true,"Ambiguous term; context needed to determine the specific domain (e.g., software, engineering, architecture)","","","",""
+Construction Equipment,Construction Equipment Operation,true,false,"",44,Skilled Trades & Industrial Maintenance,7,"Engineering, Manufacturing & Supply Chain"
+Creative Coding,Creative Coding,true,false,"",1; 10,"Software Development & Engineering; Visual Design, Animation & 3D",1; 2,Technology & IT; Design & Creative
+EMC Execution,EMC Execution,false,true,Unknown or ambiguous acronym,"","","",""
+Child Care Licensing,Childcare Licensing,true,false,"",58,Public Administration & Policy,9,Education & Human Services
+AIA Billing,AIA Billing,true,false,"",20; 32,Finance & Accounting; Project & Program Management,4; 6,"Business, Finance & Legal; Leadership & Professional Development"
+Airline Regulations,Airline Regulatory Compliance,true,false,"",23; 47,"Legal, Risk & Compliance; Aviation & Aerospace",4; 7,"Business, Finance & Legal; Engineering, Manufacturing & Supply Chain"
+Technical Ship Management,Technical Ship Management,true,false,"",48,Marine & Maritime,7,"Engineering, Manufacturing & Supply Chain"
+GMP Compliance,GMP Compliance,true,false,"",23; 43,"Legal, Risk & Compliance; Manufacturing Quality Control",4; 7,"Business, Finance & Legal; Engineering, Manufacturing & Supply Chain"
+Print On Demand,Print on Demand,true,false,"",40; 62,Supply Chain & Logistics; Retail & E-Commerce Operations,7; 10,"Engineering, Manufacturing & Supply Chain; Hospitality, Retail & Events"
+Equal Employment Opportunity (Eeo) Laws,EEO Compliance,true,false,"",29; 36,"HR Operations & Compliance; Diversity, Equity, Inclusion & Belonging",5; 6,Human Resources & People Operations; Leadership & Professional Development
+Adaptive Riding,Adaptive Riding Instruction,true,false,"",51,Allied Health & Therapeutic Services,8,Healthcare & Life Sciences
+Email List Building,Email List Building,true,false,"",16,Digital Marketing & Growth,3,"Sales, Marketing & Customer Success"
+Psychopathology Familiarity,Psychopathology,true,false,"",51; 59,Allied Health & Therapeutic Services; Community Outreach & Social Work,8; 9,Healthcare & Life Sciences; Education & Human Services
+Advanced Crm,CRM Management,true,false,"",15; 19,"Sales & Business Development; Customer Success, Service & Support",3,"Sales, Marketing & Customer Success"
+Educational Technology Integration,Educational Technology Integration,true,false,"",56,Curriculum & Instructional Design,9,Education & Human Services
+Reporting And Presentation,Reporting and Presentation,false,true,Compound or non-atomic term,"","","",""
+ATG Portal,ATG Portal,false,true,Unknown or ambiguous acronym,"","","",""
+Agreement Reconstitution,Agreement Reconstitution,true,false,"",23,"Legal, Risk & Compliance",4,"Business, Finance & Legal"
+Seo Fundamentals,SEO,true,false,"",16,Digital Marketing & Growth,3,"Sales, Marketing & Customer Success"
+Teleprompter Use,Teleprompter Use,true,false,"",12,"Audio, Video & Media Production",2,Design & Creative
+Signal Installation,Signal Installation,true,true,"Ambiguous term; context unclear (e.g., railway, telecom?)",5; 44,IT Support & Network Administration; Skilled Trades & Industrial Maintenance,1; 7,"Technology & IT; Engineering, Manufacturing & Supply Chain"
+Player Behavior Analysis,Player Behaviour Analysis,true,false,"",3; 13,"Data Science, Analytics & AI; Game Design & Development",1; 2,Technology & IT; Design & Creative
+Networking Issues,Network Troubleshooting,true,false,"",5,IT Support & Network Administration,1,Technology & IT
+Masonry Work,Masonry,true,false,"",44,Skilled Trades & Industrial Maintenance,7,"Engineering, Manufacturing & Supply Chain"
+Animal Welfare Legislation,Animal Welfare Legislation,true,false,"",23; 54,"Legal, Risk & Compliance; Veterinary & Animal Health",4; 8,"Business, Finance & Legal; Healthcare & Life Sciences"
+SailPoint,SailPoint,true,false,"",4,Cybersecurity & Information Security,1,Technology & IT
+Cranial Anatomy,Cranial Anatomy,true,false,"",49; 50; 51,Clinical Care & Nursing; Biomedical Science & Pharmaceutical Research; Allied Health & Therapeutic Services,8,Healthcare & Life Sciences
+Stakeholder Alignment,Stakeholder Alignment,true,false,"",22; 32; 34,Strategy & Business Management; Project & Program Management; Communication & Interpersonal Skills,4; 6,"Business, Finance & Legal; Leadership & Professional Development"
+Helicopter Operations,Helicopter Operations,true,false,"",47,Aviation & Aerospace,7,"Engineering, Manufacturing & Supply Chain"
+Ethics In Accounting,Accounting Ethics,true,false,"",20; 23,"Finance & Accounting; Legal, Risk & Compliance",4,"Business, Finance & Legal"
+Anthropological Theory,Anthropological Theory,true,true,Borderline between academic knowledge and applied skill,9; 18,UX/UI Design & Research; Market Research & Consumer Insights,2; 3,"Design & Creative; Sales, Marketing & Customer Success"
+Cycling Proficiency,Cycling Proficiency,false,false,"","","","",""
+Office Equipment,Office Equipment Operation,false,true,Too broad or non-specific,"","","",""
+Powerha Implementation,PowerHA Implementation,true,false,"",2; 6,DevOps & Cloud Infrastructure; Enterprise Systems & Applications,1,Technology & IT
+Google Ads Editor,Google Ads Editor,true,false,"",16,Digital Marketing & Growth,3,"Sales, Marketing & Customer Success"
+Safe Lifting,Safe Lifting,true,false,"",42,"Health, Safety & Environment",7,"Engineering, Manufacturing & Supply Chain"
+Maintenance Supervision,Maintenance Supervision,true,false,"",31; 44,Leadership & People Management; Skilled Trades & Industrial Maintenance,6; 7,"Leadership & Professional Development; Engineering, Manufacturing & Supply Chain"
+Safety Culture,Safety Culture Management,true,true,Canonicalised from a concept to an applied skill,31; 42,"Leadership & People Management; Health, Safety & Environment",6; 7,"Leadership & Professional Development; Engineering, Manufacturing & Supply Chain"
+Tax Software Utilization,Tax Software Utilisation,true,false,"",20,Finance & Accounting,4,"Business, Finance & Legal"
+Sign Fabrication,Sign Fabrication,true,false,"",44,Skilled Trades & Industrial Maintenance,7,"Engineering, Manufacturing & Supply Chain"
+Pressure Injury Management,Pressure Injury Management,true,false,"",49,Clinical Care & Nursing,8,Healthcare & Life Sciences
+Organizational Aptitude,Organisational Skills,true,true,Canonicalised from a trait to a skill,35,Personal Effectiveness & Productivity,6,Leadership & Professional Development
+Cutting Basics,Cutting Basics,false,true,"Too generic, lacks professional context","","","",""
+DFSS: Design for Six Sigma,Design for Six Sigma (DFSS),true,false,"",41; 43,"Lean, Six Sigma & Continuous Improvement; Manufacturing Quality Control",7,"Engineering, Manufacturing & Supply Chain"
+Injury Rehabilitation,Injury Rehabilitation,true,false,"",51,Allied Health & Therapeutic Services,8,Healthcare & Life Sciences
+Cyber Insurance,Cyber Insurance,true,true,"Borderline domain, validated as a specialised knowledge area",4; 23,"Cybersecurity & Information Security; Legal, Risk & Compliance",1; 4,"Technology & IT; Business, Finance & Legal"
+Constitutional Law,Constitutional Law,true,false,"",23,"Legal, Risk & Compliance",4,"Business, Finance & Legal"
+MCSD,MCSD (Microsoft Certified Solutions Developer),true,true,Certification context unclear,1,Software Development & Engineering,1,Technology & IT
+Construction Material Testing,Construction Material Testing,true,false,"",38,"Mechanical, Electrical & Civil Engineering",7,"Engineering, Manufacturing & Supply Chain"
+Delegation,Delegation,true,false,"",31,Leadership & People Management,6,Leadership & Professional Development
+Franchise Research,Franchise Research,true,false,"",22,Strategy & Business Management,4,"Business, Finance & Legal"
+Long Term Business Planning,Long-Term Business Planning,true,false,"",22,Strategy & Business Management,4,"Business, Finance & Legal"
+Policy Issuance,Policy Issuance,true,true,"Context is ambiguous (e.g., insurance, HR, legal)",23,"Legal, Risk & Compliance",4,"Business, Finance & Legal"
+Ticket Collection,Ticket Collection,false,true,Too low-level or task-oriented to be a standalone skill,"","","",""
