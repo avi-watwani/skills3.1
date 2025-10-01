@@ -3,6 +3,6 @@ class Cluster < ApplicationRecord
   has_many :skill_clusters, dependent: :destroy
   has_many :skills, through: :skill_clusters
   
-  validates :taxonomy_id, presence: true, uniqueness: true
   validates :name, presence: true
+  validates :name, uniqueness: { scope: :domain_id }
 end

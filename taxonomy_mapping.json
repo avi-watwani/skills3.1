@@ -1,0 +1,322 @@
+{
+  "1": {
+    "domain_db_id": 1,
+    "domain_name": "Technology & IT",
+    "clusters": {
+      "1": {
+        "cluster_db_id": 1,
+        "cluster_name": "Software Development & Engineering"
+      },
+      "2": {
+        "cluster_db_id": 2,
+        "cluster_name": "DevOps & Cloud Infrastructure"
+      },
+      "3": {
+        "cluster_db_id": 3,
+        "cluster_name": "Data Science, Analytics & AI"
+      },
+      "4": {
+        "cluster_db_id": 4,
+        "cluster_name": "Cybersecurity & Information Security"
+      },
+      "5": {
+        "cluster_db_id": 5,
+        "cluster_name": "IT Support & Network Administration"
+      },
+      "6": {
+        "cluster_db_id": 6,
+        "cluster_name": "Enterprise Systems & Applications"
+      },
+      "7": {
+        "cluster_db_id": 7,
+        "cluster_name": "Software Quality Assurance"
+      },
+      "8": {
+        "cluster_db_id": 8,
+        "cluster_name": "Emerging Technologies & Innovation"
+      }
+    }
+  },
+  "2": {
+    "domain_db_id": 2,
+    "domain_name": "Design & Creative",
+    "clusters": {
+      "9": {
+        "cluster_db_id": 9,
+        "cluster_name": "UX/UI Design & Research"
+      },
+      "10": {
+        "cluster_db_id": 10,
+        "cluster_name": "Visual Design, Animation & 3D"
+      },
+      "11": {
+        "cluster_db_id": 11,
+        "cluster_name": "Content Creation, Writing & Editing"
+      },
+      "12": {
+        "cluster_db_id": 12,
+        "cluster_name": "Audio, Video & Media Production"
+      },
+      "13": {
+        "cluster_db_id": 13,
+        "cluster_name": "Game Design & Development"
+      },
+      "14": {
+        "cluster_db_id": 14,
+        "cluster_name": "Photography & Videography"
+      }
+    }
+  },
+  "3": {
+    "domain_db_id": 3,
+    "domain_name": "Sales, Marketing & Customer Success",
+    "clusters": {
+      "15": {
+        "cluster_db_id": 15,
+        "cluster_name": "Sales & Business Development"
+      },
+      "16": {
+        "cluster_db_id": 16,
+        "cluster_name": "Digital Marketing & Growth"
+      },
+      "17": {
+        "cluster_db_id": 17,
+        "cluster_name": "Brand, Content & Communications Strategy"
+      },
+      "18": {
+        "cluster_db_id": 18,
+        "cluster_name": "Market Research & Consumer Insights"
+      },
+      "19": {
+        "cluster_db_id": 19,
+        "cluster_name": "Customer Success, Service & Support"
+      }
+    }
+  },
+  "4": {
+    "domain_db_id": 4,
+    "domain_name": "Business, Finance & Legal",
+    "clusters": {
+      "20": {
+        "cluster_db_id": 20,
+        "cluster_name": "Finance & Accounting"
+      },
+      "21": {
+        "cluster_db_id": 21,
+        "cluster_name": "Business Analysis & Intelligence"
+      },
+      "22": {
+        "cluster_db_id": 22,
+        "cluster_name": "Strategy & Business Management"
+      },
+      "23": {
+        "cluster_db_id": 23,
+        "cluster_name": "Legal, Risk & Compliance"
+      },
+      "24": {
+        "cluster_db_id": 24,
+        "cluster_name": "Procurement & Vendor Management"
+      },
+      "25": {
+        "cluster_db_id": 25,
+        "cluster_name": "Real Estate & Property Management"
+      }
+    }
+  },
+  "5": {
+    "domain_db_id": 5,
+    "domain_name": "Human Resources & People Operations",
+    "clusters": {
+      "26": {
+        "cluster_db_id": 26,
+        "cluster_name": "Talent Acquisition & Recruitment"
+      },
+      "27": {
+        "cluster_db_id": 27,
+        "cluster_name": "Compensation & Benefits"
+      },
+      "28": {
+        "cluster_db_id": 28,
+        "cluster_name": "Employee Relations & Engagement"
+      },
+      "29": {
+        "cluster_db_id": 29,
+        "cluster_name": "HR Operations & Compliance"
+      },
+      "30": {
+        "cluster_db_id": 30,
+        "cluster_name": "Learning & Development"
+      }
+    }
+  },
+  "6": {
+    "domain_db_id": 6,
+    "domain_name": "Leadership & Professional Development",
+    "clusters": {
+      "31": {
+        "cluster_db_id": 31,
+        "cluster_name": "Leadership & People Management"
+      },
+      "32": {
+        "cluster_db_id": 32,
+        "cluster_name": "Project & Program Management"
+      },
+      "33": {
+        "cluster_db_id": 33,
+        "cluster_name": "Coaching, Mentoring & Training"
+      },
+      "34": {
+        "cluster_db_id": 34,
+        "cluster_name": "Communication & Interpersonal Skills"
+      },
+      "35": {
+        "cluster_db_id": 35,
+        "cluster_name": "Personal Effectiveness & Productivity"
+      },
+      "36": {
+        "cluster_db_id": 36,
+        "cluster_name": "Diversity, Equity, Inclusion & Belonging"
+      },
+      "37": {
+        "cluster_db_id": 37,
+        "cluster_name": "Languages & Localization"
+      }
+    }
+  },
+  "7": {
+    "domain_db_id": 7,
+    "domain_name": "Engineering, Manufacturing & Supply Chain",
+    "clusters": {
+      "38": {
+        "cluster_db_id": 38,
+        "cluster_name": "Mechanical, Electrical & Civil Engineering"
+      },
+      "39": {
+        "cluster_db_id": 39,
+        "cluster_name": "Manufacturing & Production Operations"
+      },
+      "40": {
+        "cluster_db_id": 40,
+        "cluster_name": "Supply Chain & Logistics"
+      },
+      "41": {
+        "cluster_db_id": 41,
+        "cluster_name": "Lean, Six Sigma & Continuous Improvement"
+      },
+      "42": {
+        "cluster_db_id": 42,
+        "cluster_name": "Health, Safety & Environment"
+      },
+      "43": {
+        "cluster_db_id": 43,
+        "cluster_name": "Manufacturing Quality Control"
+      },
+      "44": {
+        "cluster_db_id": 44,
+        "cluster_name": "Skilled Trades & Industrial Maintenance"
+      },
+      "45": {
+        "cluster_db_id": 45,
+        "cluster_name": "Oil, Gas & Energy Engineering"
+      },
+      "46": {
+        "cluster_db_id": 46,
+        "cluster_name": "Mining & Geosciences"
+      },
+      "47": {
+        "cluster_db_id": 47,
+        "cluster_name": "Aviation & Aerospace"
+      },
+      "48": {
+        "cluster_db_id": 48,
+        "cluster_name": "Marine & Maritime"
+      }
+    }
+  },
+  "8": {
+    "domain_db_id": 8,
+    "domain_name": "Healthcare & Life Sciences",
+    "clusters": {
+      "49": {
+        "cluster_db_id": 49,
+        "cluster_name": "Clinical Care & Nursing"
+      },
+      "50": {
+        "cluster_db_id": 50,
+        "cluster_name": "Biomedical Science & Pharmaceutical Research"
+      },
+      "51": {
+        "cluster_db_id": 51,
+        "cluster_name": "Allied Health & Therapeutic Services"
+      },
+      "52": {
+        "cluster_db_id": 52,
+        "cluster_name": "Public Health & Epidemiology"
+      },
+      "53": {
+        "cluster_db_id": 53,
+        "cluster_name": "Health Informatics & Administration"
+      },
+      "54": {
+        "cluster_db_id": 54,
+        "cluster_name": "Veterinary & Animal Health"
+      }
+    }
+  },
+  "9": {
+    "domain_db_id": 9,
+    "domain_name": "Education & Human Services",
+    "clusters": {
+      "55": {
+        "cluster_db_id": 55,
+        "cluster_name": "Classroom Instruction & Tutoring"
+      },
+      "56": {
+        "cluster_db_id": 56,
+        "cluster_name": "Curriculum & Instructional Design"
+      },
+      "57": {
+        "cluster_db_id": 57,
+        "cluster_name": "Special Education & Student Support"
+      },
+      "58": {
+        "cluster_db_id": 58,
+        "cluster_name": "Public Administration & Policy"
+      },
+      "59": {
+        "cluster_db_id": 59,
+        "cluster_name": "Community Outreach & Social Work"
+      },
+      "60": {
+        "cluster_db_id": 60,
+        "cluster_name": "Information & Library Science"
+      }
+    }
+  },
+  "10": {
+    "domain_db_id": 10,
+    "domain_name": "Hospitality, Retail & Events",
+    "clusters": {
+      "61": {
+        "cluster_db_id": 61,
+        "cluster_name": "Culinary & Food Services"
+      },
+      "62": {
+        "cluster_db_id": 62,
+        "cluster_name": "Retail & E-Commerce Operations"
+      },
+      "63": {
+        "cluster_db_id": 63,
+        "cluster_name": "Hotel, Travel & Tourism Management"
+      },
+      "64": {
+        "cluster_db_id": 64,
+        "cluster_name": "Event Planning & Management"
+      },
+      "65": {
+        "cluster_db_id": 65,
+        "cluster_name": "Sports, Fitness & Wellness"
+      }
+    }
+  }
+}
