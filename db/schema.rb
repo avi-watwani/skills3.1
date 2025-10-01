@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20250826070752) do
+ActiveRecord::Schema.define(version: 20251001133259) do
+
+  create_table "clusters", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "domain_id",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["domain_id"], name: "index_clusters_on_domain_id"
+  end
+
+  create_table "domains", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "open_ai_interactions", force: :cascade do |t|
     t.text     "request_body"
@@ -18,6 +32,28 @@ ActiveRecord::Schema.define(version: 20250826070752) do
     t.integer  "http_status_code"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+  end
+
+  create_table "skill_clusters", force: :cascade do |t|
+    t.integer  "skill_id",   null: false
+    t.integer  "cluster_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cluster_id"], name: "index_skill_clusters_on_cluster_id"
+    t.index ["skill_id", "cluster_id"], name: "index_skill_clusters_on_skill_id_and_cluster_id", unique: true
+    t.index ["skill_id"], name: "index_skill_clusters_on_skill_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string   "original_input",                  null: false
+    t.string   "canonical_name",                  null: false
+    t.boolean  "is_valid",        default: false, null: false
+    t.boolean  "requires_review", default: false, null: false
+    t.string   "review_reason"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["is_valid"], name: "index_skills_on_is_valid"
+    t.index ["requires_review"], name: "index_skills_on_requires_review"
   end
 
 end
