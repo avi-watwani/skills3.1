@@ -30,31 +30,106 @@ module Gemini
       chat
     end
 
-    def merge_skills(cluster_data)
+    def merge_skills(cluster_data, output_filename)
       raise ArgumentError, 'Cluster data cannot be empty' if cluster_data.empty?
 
       chat = create_chat(cluster_data)
       response = chat.create
-      byebug
-      valid = true # validate_merge_response(response)
-      if valid
-        # store_skills_merge_csv(response)
-      else
-        @error_clusters << { domain: cluster_data[:domain], cluster: cluster_data[:sub_domain] }
-      end
+      # Store the CSV results
+      store_skills_merge_csv(response, output_filename)
       chat
     end
 
-    def store_skills_merge_csv(response)
-      # Implement CSV storage logic here
-      CSV.open("skills_merge_#{Time.now.to_i}.csv", "wb") do |csv|
-        csv << ["Skill ID", "Skill Name"] # Example headers
-        # Assuming response contains the merged skills in a specific format
-        merged_skills = self.class.parse_results(response)
-        merged_skills.each do |skill|
-          csv << [skill['skill_id'], skill['skill_name']]
-        end
+    def store_skills_merge_csv(response, output_filename)
+      # Extract CSV content from the response
+      csv_content = extract_csv_from_response(response)
+      return if csv_content.blank?
+
+      # Write the CSV content directly to the specified file
+      File.write(output_filename, csv_content)
+
+      puts "Merge results saved to: #{output_filename}"
+    end
+
+    def self.store_skills_merge_csv(response, output_filename)
+      # Extract CSV content from the response
+      csv_content = extract_csv_from_response(response)
+      return if csv_content.blank?
+
+      # Write the CSV content directly to the specified file
+      File.write(output_filename, csv_content)
+
+      puts "Merge results saved to: #{output_filename}"
+    end
+
+    # Parse merge results from response for programmatic access
+    # @param chat [Gemini::Chat] The completed chat instance
+    # @return [Array<Hash>] Parsed skills merge results
+    def self.parse_merge_results(chat)
+      response = chat.respond_to?(:response) ? chat.response : chat
+      csv_content = extract_csv_from_response(response)
+      return [] if csv_content.blank?
+
+      parse_csv_content(csv_content)
+    end
+
+    # Helper method to get outcome description
+    # @param outcome_id [Integer] The outcome ID (1, 2, or 3)
+    # @return [String] Human-readable description
+    def self.outcome_description(outcome_id)
+      outcome_descriptions = {
+        1 => "Keep as canonical",
+        2 => "Merge with another skill",
+        3 => "Uncertain - needs review"
+      }
+      outcome_descriptions[outcome_id] || "Unknown outcome"
+    end
+
+    private
+
+    def extract_csv_from_response(response)
+      self.class.extract_csv_from_response(response)
+    end
+
+    def self.extract_csv_from_response(response)
+      # Handle different response types
+      if response.respond_to?(:data)
+        response_data = response.data
+      elsif response.is_a?(Hash)
+        response_data = response
+      else
+        return nil
       end
+
+      # Extract text from response structure
+      candidates = response_data&.dig('candidates') || response_data&.dig('data', 'candidates')
+      return nil unless candidates&.any?
+
+      text_content = candidates.first&.dig('content', 'parts')&.first&.dig('text')
+      return nil unless text_content
+
+      # The response should already be CSV format, just clean it up
+      text_content.strip
+    end
+
+    def self.parse_csv_content(csv_content)
+      require 'csv'
+      results = []
+
+      CSV.parse(csv_content, headers: true) do |row|
+        results << {
+          skill_id: row['skill_id'],
+          outcome_id: row['outcome_id'].to_i,
+          merge_with_skill_id: row['merge_with_skill_id'],
+          reason: row['reason'],
+          outcome_description: outcome_description(row['outcome_id'].to_i)
+        }
+      end
+
+      results
+    rescue CSV::MalformedCSVError => e
+      Rails.logger.error("Invalid CSV format: #{e.message}") if defined?(Rails)
+      []
     end
 
     # Parse the result from a completed chat by querying the database
