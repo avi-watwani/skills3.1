@@ -11,7 +11,7 @@ module Gemini
       @error_clusters = []
       @validation_error_reason = nil
       @config = {
-        max_tokens: 50_000,
+        max_tokens: 60_000,
         thinking_mode: true,
         model: 'gemini-2.5-pro',
         prompt_type: 'skill_merge'
@@ -37,14 +37,14 @@ module Gemini
 
       # Store input context for validation
       @current_input_skill_ids = cluster_data[:skills].map { |skill| skill[:skill_id].to_s }
-      
+
       begin
         chat = create_chat(cluster_data)
         response = chat.create
-        
+
         # Validate the response
         response_valid = validate_merge_response(response)
-        
+
         if response_valid
           # Store the CSV results only if validation passes
           if output_filename
@@ -58,7 +58,7 @@ module Gemini
         else
           puts "Response validation: FAILED - #{@validation_error_reason || 'Check logs for details'}"
           # Still save the response for debugging, but with a different name
-          error_info = { 
+          error_info = {
             domain: cluster_data[:domain], 
             cluster: cluster_data[:sub_domain],
             error_type: 'validation_failed',
@@ -76,7 +76,7 @@ module Gemini
         }
         @error_clusters << error_info
       end
-      
+
       chat
     end
 
@@ -87,7 +87,7 @@ module Gemini
         @validation_error_reason = "No CSV content found in response"
         return false
       end
-      
+
       begin
         # Parse CSV to get results
         results = []
@@ -99,14 +99,14 @@ module Gemini
             reason: row['reason']
           }
         end
-        
+
         # Get input skill IDs from the last cluster data processed
         input_skill_ids = get_input_skill_ids_from_context
         if input_skill_ids.empty?
           @validation_error_reason = "No input skill IDs available for validation"
           return false
         end
-        
+
         # Validation 1: Check each input skill appears in output
         output_skill_ids = results.map { |r| r[:skill_id] }
         missing_skills = input_skill_ids - output_skill_ids
@@ -115,13 +115,13 @@ module Gemini
           Rails.logger.error(@validation_error_reason) if defined?(Rails)
           return false
         end
-        
+
         # Validation 2: Check merge_with_skill_id references are valid (if present)
         invalid_merge_targets = []
         results.each do |result|
           # Skip validation if merge_with_skill_id is blank or empty
           next if result[:merge_with_skill_id].blank? || result[:merge_with_skill_id].strip.empty?
-          
+
           merge_target = result[:merge_with_skill_id].strip
           unless input_skill_ids.include?(merge_target)
             invalid_merge_targets << {
@@ -130,7 +130,7 @@ module Gemini
             }
           end
         end
-        
+
         if invalid_merge_targets.any?
           error_details = invalid_merge_targets.map { |error| "Skill #{error[:skill_id]} -> '#{error[:invalid_target]}'" }.join(', ')
           @validation_error_reason = "Invalid merge targets found: #{error_details}. Valid targets are: #{input_skill_ids.join(', ')}"
@@ -141,12 +141,11 @@ module Gemini
         # Clear any previous error reason on success
         @validation_error_reason = nil
         true # All validations passed
-
       rescue CSV::MalformedCSVError => e
         @validation_error_reason = "CSV parsing error: #{e.message}. CSV content: #{csv_content.truncate(200)}"
         Rails.logger.error(@validation_error_reason) if defined?(Rails)
         false
-      rescue => e
+      rescue StandardError => e
         @validation_error_reason = "Unexpected validation error: #{e.message} (#{e.class})"
         Rails.logger.error(@validation_error_reason) if defined?(Rails)
         false
@@ -215,8 +214,6 @@ module Gemini
       }
       outcome_descriptions[outcome_id] || "Unknown outcome"
     end
-
-    private
 
     def extract_csv_from_response(response)
       self.class.extract_csv_from_response(response)
@@ -299,12 +296,12 @@ module Gemini
 
         # Clean up the response text - remove code block formatting if present
         json_text = response_text.gsub(/```json\n?/, '').gsub(/```\n?$/, '').strip
-        
+
         # If it doesn't start with [ or {, it might not be JSON
         unless json_text.start_with?('[', '{')
           return []
         end
-        
+
         return JSON.parse(json_text)
       end
 
@@ -323,7 +320,7 @@ module Gemini
       candidates = response.dig('data', 'candidates') || 
                   response['candidates'] ||
                   [response]
-      
+
       candidates&.first&.dig('content', 'parts')&.first&.dig('text')
     end
 
@@ -358,7 +355,7 @@ module Gemini
     # @return [Array<Hash>] All skills validation results from successful interactions
     def self.historical_results
       return [] unless defined?(OpenAIInteraction)
-      
+
       all_results = []
       OpenAIInteraction.successful.each do |interaction|
         results = interaction.skills_validation_results
@@ -372,7 +369,7 @@ module Gemini
     def self.validation_statistics
       results = historical_results
       return {} if results.empty?
-      
+
       valid_skills = results.select { |s| s['is_valid'] }
       invalid_skills = results.reject { |s| s['is_valid'] }
       review_needed = results.select { |s| s['requires_review'] }

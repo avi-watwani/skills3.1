@@ -25,12 +25,12 @@ puts
 Domain.all.each_with_index do |domain, domain_index|
   puts "\n[#{domain_index + 1}/#{total_domains}] Processing Domain: #{domain.name}"
   domain_clusters = domain.clusters.count
-  
+
   domain.clusters.each_with_index do |cluster, cluster_index|
     cluster_progress = "#{cluster_index + 1}/#{domain_clusters}"
     print "  [#{cluster_progress}] #{cluster.name}... "
-    
-    valid_skills = cluster.skills.where(is_valid: true)
+
+    valid_skills = cluster.skills.where(is_valid: true).first(450)
 
     # Skip if no skills in this cluster
     if valid_skills.empty?
@@ -66,7 +66,7 @@ Domain.all.each_with_index do |domain, domain_index|
         validation_failures += 1
         puts "VALIDATION FAILED (#{merge_time.round(2)}s)"
         puts "    Reason: #{skills_merger.last_validation_error}"
-        
+
         # Add detailed validation error info
         error_clusters.concat(skills_merger.error_clusters) if skills_merger.error_clusters.any?
       elsif skills_merger.error_clusters.any?
@@ -78,12 +78,12 @@ Domain.all.each_with_index do |domain, domain_index|
         processed += 1
         puts "SUCCESS (#{merge_time.round(2)}s)"
       end
-      
+
     rescue => e
       exceptions += 1
       puts "EXCEPTION (#{e.class})"
       puts "    Error: #{e.message}"
-      
+
       # Add exception info with enhanced details
       exception_info = {
         domain: domain.name,
@@ -93,15 +93,15 @@ Domain.all.each_with_index do |domain, domain_index|
         exception_class: e.class.to_s,
         skills_count: skills_count
       }
-      
+
       # Try to get validation error if the merger was created
       if defined?(skills_merger) && skills_merger.respond_to?(:last_validation_error) && skills_merger.last_validation_error
         exception_info[:validation_error] = skills_merger.last_validation_error
       end
-      
+
       error_clusters << exception_info
     end
-    
+
     # Add a small delay to be nice to the API
     sleep(1)
   end
@@ -137,11 +137,11 @@ end
 if error_clusters.any?
   puts "🔍 DETAILED ERROR ANALYSIS:"
   puts "-" * 50
-  
+
   # Group errors by type
   validation_errors = error_clusters.select { |e| e[:error_type] == 'validation_failed' }
   exception_errors = error_clusters.select { |e| e[:error_type] == 'script_exception' }
-  
+
   if validation_errors.any?
     puts "\n📋 VALIDATION FAILURES (#{validation_errors.count}):"
     validation_errors.each_with_index do |error_info, index|
@@ -151,7 +151,7 @@ if error_clusters.any?
       puts
     end
   end
-  
+
   if exception_errors.any?
     puts "\n⚡ EXCEPTIONS (#{exception_errors.count}):"
     exception_errors.each_with_index do |error_info, index|
@@ -163,17 +163,16 @@ if error_clusters.any?
       puts
     end
   end
-  
+
   # Summary of most common error types
   puts "\n📈 ERROR PATTERN ANALYSIS:"
   error_messages = error_clusters.map { |e| e[:error_message] }
   message_counts = error_messages.each_with_object(Hash.new(0)) { |msg, hash| hash[msg] += 1 }
-  
+
   puts "Most common error messages:"
   message_counts.sort_by { |_, count| -count }.first(5).each do |message, count|
     puts "  • #{count}x: #{message.truncate(80)}"
   end
-  
 else
   puts "🎉 NO ERRORS OCCURRED!"
   puts "All clusters processed successfully!"
