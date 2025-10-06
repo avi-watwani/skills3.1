@@ -4,14 +4,15 @@ module Gemini
   # Skills validation and canonicalisation using Gemini AI
   class Skills
     # SYSTEM_PROMPT_FILE = File.join(__dir__, 'prompts', 'skills_validation.md')
-    SYSTEM_PROMPT_FILE = File.join(__dir__, 'prompts', 'skills_validation.md')
+    SYSTEM_PROMPT_FILE = File.join(__dir__, 'prompts', 'skills_merge.md')
+    @error_clusters = []
 
     def initialize
       @config = {
-        max_tokens: 122_88,
+        max_tokens: 50_000,
         thinking_mode: true,
         model: 'gemini-2.5-pro',
-        prompt_type: 'skill_validation'
+        prompt_type: 'skill_merge'
       }
     end
 
@@ -27,6 +28,33 @@ module Gemini
       response = chat.create
       store_skills_validation_record(skills, response)
       chat
+    end
+
+    def merge_skills(cluster_data)
+      raise ArgumentError, 'Cluster data cannot be empty' if cluster_data.empty?
+
+      chat = create_chat(cluster_data)
+      response = chat.create
+      byebug
+      valid = true # validate_merge_response(response)
+      if valid
+        # store_skills_merge_csv(response)
+      else
+        @error_clusters << { domain: cluster_data[:domain], cluster: cluster_data[:sub_domain] }
+      end
+      chat
+    end
+
+    def store_skills_merge_csv(response)
+      # Implement CSV storage logic here
+      CSV.open("skills_merge_#{Time.now.to_i}.csv", "wb") do |csv|
+        csv << ["Skill ID", "Skill Name"] # Example headers
+        # Assuming response contains the merged skills in a specific format
+        merged_skills = self.class.parse_results(response)
+        merged_skills.each do |skill|
+          csv << [skill['skill_id'], skill['skill_name']]
+        end
+      end
     end
 
     # Parse the result from a completed chat by querying the database
@@ -400,9 +428,9 @@ module Gemini
 
     private
 
-    def create_chat(skills)
+    def create_chat(user_data)
       Gemini::Chat.new(
-        messages: create_messages(skills),
+        messages: create_messages(user_data),
         prompt_type: @config[:prompt_type],
         thinking_mode: @config[:thinking_mode],
         model: @config[:model],
@@ -410,16 +438,16 @@ module Gemini
       )
     end
 
-    def create_messages(skills)
+    def create_messages(user_data)
       [
         { role: 'model', content: system_prompt },
-        { role: 'user', content: format_skills_input(skills) }
+        { role: 'user', content: format_input(user_data) }
       ]
     end
 
-    def format_skills_input(skills)
+    def format_input(user_data)
       # Ensure proper JSON formatting for the input
-      skills.to_json
+      user_data.to_json
     rescue JSON::GeneratorError => e
       raise ArgumentError, "Invalid skills data for JSON conversion: #{e.message}"
     end
@@ -445,8 +473,8 @@ module Gemini
     def load_system_prompt
       if File.exist?(SYSTEM_PROMPT_FILE)
         File.read(SYSTEM_PROMPT_FILE)
-      else
-        fallback_system_prompt
+      # else
+        # fallback_system_prompt
       end
     end
 
