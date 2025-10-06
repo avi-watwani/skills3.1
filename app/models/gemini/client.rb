@@ -66,11 +66,9 @@ module Gemini
       Gemini::ResponseObject.new(error_message: error_message, status: status_code)
     end
 
+    # Instead of notifying via ExceptionNotifier, add error details to a hash for easier handling.
     def notify_error(message, details = {})
-      ExceptionNotifier.notify_exception(
-        Exception.new(message),
-        data: { message: message, details: details }
-      )
+      { error: { message: message, details: details } }
     end
 
     def extract_token_usage(response)

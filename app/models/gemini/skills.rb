@@ -5,9 +5,11 @@ module Gemini
   class Skills
     # SYSTEM_PROMPT_FILE = File.join(__dir__, 'prompts', 'skills_validation.md')
     SYSTEM_PROMPT_FILE = File.join(__dir__, 'prompts', 'skills_merge.md')
-    @error_clusters = []
+    attr_reader :error_clusters, :validation_error_reason
 
     def initialize
+      @error_clusters = []
+      @validation_error_reason = nil
       @config = {
         max_tokens: 50_000,
         thinking_mode: true,
@@ -30,14 +32,143 @@ module Gemini
       chat
     end
 
-    def merge_skills(cluster_data, output_filename)
+    def merge_skills(cluster_data, output_filename = nil)
       raise ArgumentError, 'Cluster data cannot be empty' if cluster_data.empty?
 
-      chat = create_chat(cluster_data)
-      response = chat.create
-      # Store the CSV results
-      store_skills_merge_csv(response, output_filename)
+      # Store input context for validation
+      @current_input_skill_ids = cluster_data[:skills].map { |skill| skill[:skill_id].to_s }
+      
+      begin
+        chat = create_chat(cluster_data)
+        response = chat.create
+        
+        # Validate the response
+        response_valid = validate_merge_response(response)
+        
+        if response_valid
+          # Store the CSV results only if validation passes
+          if output_filename
+            store_skills_merge_csv(response, output_filename)
+          else
+            # Use default filename with timestamp
+            filename = "skills_merge_#{Time.now.to_i}.csv"
+            store_skills_merge_csv(response, filename)
+          end
+          puts "Response validation: PASSED"
+        else
+          puts "Response validation: FAILED - #{@validation_error_reason || 'Check logs for details'}"
+          # Still save the response for debugging, but with a different name
+          error_info = { 
+            domain: cluster_data[:domain], 
+            cluster: cluster_data[:sub_domain],
+            error_type: 'validation_failed',
+            error_message: @validation_error_reason || 'Response validation failed - invalid CSV format or missing required fields'
+          }
+          @error_clusters << error_info
+        end
+      rescue StandardError => e
+        error_info = { 
+          domain: cluster_data[:domain], 
+          cluster: cluster_data[:sub_domain],
+          error_type: 'exception',
+          error_message: e.message,
+          exception_class: e.class.to_s
+        }
+        @error_clusters << error_info
+      end
+      
       chat
+    end
+
+    def validate_merge_response(response)
+      # Extract CSV content from response
+      csv_content = extract_csv_from_response(response)
+      if csv_content.blank?
+        @validation_error_reason = "No CSV content found in response"
+        return false
+      end
+      
+      begin
+        # Parse CSV to get results
+        results = []
+        CSV.parse(csv_content, headers: true) do |row|
+          results << {
+            skill_id: row['skill_id'],
+            outcome_id: row['outcome_id'].to_i,
+            merge_with_skill_id: row['merge_with_skill_id'],
+            reason: row['reason']
+          }
+        end
+        
+        # Get input skill IDs from the last cluster data processed
+        input_skill_ids = get_input_skill_ids_from_context
+        if input_skill_ids.empty?
+          @validation_error_reason = "No input skill IDs available for validation"
+          return false
+        end
+        
+        # Validation 1: Check each input skill appears in output
+        output_skill_ids = results.map { |r| r[:skill_id] }
+        missing_skills = input_skill_ids - output_skill_ids
+        if missing_skills.any?
+          @validation_error_reason = "Missing skills in output: #{missing_skills.join(', ')} (Expected: #{input_skill_ids.join(', ')}, Got: #{output_skill_ids.join(', ')})"
+          Rails.logger.error(@validation_error_reason) if defined?(Rails)
+          return false
+        end
+        
+        # Validation 2: Check merge_with_skill_id references are valid (if present)
+        invalid_merge_targets = []
+        results.each do |result|
+          # Skip validation if merge_with_skill_id is blank or empty
+          next if result[:merge_with_skill_id].blank? || result[:merge_with_skill_id].strip.empty?
+          
+          merge_target = result[:merge_with_skill_id].strip
+          unless input_skill_ids.include?(merge_target)
+            invalid_merge_targets << {
+              skill_id: result[:skill_id],
+              invalid_target: merge_target
+            }
+          end
+        end
+        
+        if invalid_merge_targets.any?
+          error_details = invalid_merge_targets.map { |error| "Skill #{error[:skill_id]} -> '#{error[:invalid_target]}'" }.join(', ')
+          @validation_error_reason = "Invalid merge targets found: #{error_details}. Valid targets are: #{input_skill_ids.join(', ')}"
+          Rails.logger.error(@validation_error_reason) if defined?(Rails)
+          return false
+        end
+
+        # Clear any previous error reason on success
+        @validation_error_reason = nil
+        true # All validations passed
+
+      rescue CSV::MalformedCSVError => e
+        @validation_error_reason = "CSV parsing error: #{e.message}. CSV content: #{csv_content.truncate(200)}"
+        Rails.logger.error(@validation_error_reason) if defined?(Rails)
+        false
+      rescue => e
+        @validation_error_reason = "Unexpected validation error: #{e.message} (#{e.class})"
+        Rails.logger.error(@validation_error_reason) if defined?(Rails)
+        false
+      end
+    end
+
+    # Get the last validation error reason (if any)
+    # @return [String, nil] The detailed validation error reason
+    def last_validation_error
+      @validation_error_reason
+    end
+
+    # Check if the last operation had validation errors
+    # @return [Boolean] True if there were validation errors
+    def validation_failed?
+      !@validation_error_reason.nil?
+    end
+
+    private
+
+    def get_input_skill_ids_from_context
+      @current_input_skill_ids || []
     end
 
     def store_skills_merge_csv(response, output_filename)
@@ -121,8 +252,7 @@ module Gemini
           skill_id: row['skill_id'],
           outcome_id: row['outcome_id'].to_i,
           merge_with_skill_id: row['merge_with_skill_id'],
-          reason: row['reason'],
-          outcome_description: outcome_description(row['outcome_id'].to_i)
+          reason: row['reason']
         }
       end
 
