@@ -30,7 +30,7 @@ Domain.all.each_with_index do |domain, domain_index|
     cluster_progress = "#{cluster_index + 1}/#{domain_clusters}"
     print "  [#{cluster_progress}] #{cluster.name}... "
 
-    valid_skills = cluster.skills.where(is_valid: true).first(150)
+    valid_skills = cluster.skills.where(is_valid: true)
 
     # Skip if no skills in this cluster
     if valid_skills.empty?

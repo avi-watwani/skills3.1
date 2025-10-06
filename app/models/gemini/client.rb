@@ -20,7 +20,7 @@ module Gemini
     def post(endpoint, body)
       response_obj = nil
       begin
-        response = self.class.post(endpoint, body: body.to_json, headers: @headers, timeout: 1200)
+        response = self.class.post(endpoint, body: body.to_json, headers: @headers, timeout: 2400)
         response_obj = if response.success?
                          Gemini::ResponseObject.new(data: response.parsed_response, status: response.code)
                        else
