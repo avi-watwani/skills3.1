@@ -3,7 +3,8 @@
 module Gemini
   # Skills validation and canonicalisation using Gemini AI
   class Skills
-    SYSTEM_PROMPT_FILE = File.join(__dir__, 'prompts', 'skills_validation.txt')
+    # SYSTEM_PROMPT_FILE = File.join(__dir__, 'prompts', 'skills_validation.md')
+    SYSTEM_PROMPT_FILE = File.join(__dir__, 'prompts', 'skills_validation.md')
 
     def initialize
       @config = {
