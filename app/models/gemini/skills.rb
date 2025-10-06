@@ -11,7 +11,7 @@ module Gemini
       @error_clusters = []
       @validation_error_reason = nil
       @config = {
-        max_tokens: 60_000,
+        max_tokens: 70_000,
         thinking_mode: true,
         model: 'gemini-2.5-pro',
         prompt_type: 'skill_merge'
@@ -84,7 +84,7 @@ module Gemini
       # Extract CSV content from response
       csv_content = extract_csv_from_response(response)
       if csv_content.blank?
-        @validation_error_reason = "No CSV content found in response"
+        @validation_error_reason = response.error_message || "No CSV content found in response"
         return false
       end
 

@@ -30,7 +30,7 @@ Domain.all.each_with_index do |domain, domain_index|
     cluster_progress = "#{cluster_index + 1}/#{domain_clusters}"
     print "  [#{cluster_progress}] #{cluster.name}... "
 
-    valid_skills = cluster.skills.where(is_valid: true).first(450)
+    valid_skills = cluster.skills.where(is_valid: true).first(150)
 
     # Skip if no skills in this cluster
     if valid_skills.empty?
@@ -78,8 +78,7 @@ Domain.all.each_with_index do |domain, domain_index|
         processed += 1
         puts "SUCCESS (#{merge_time.round(2)}s)"
       end
-
-    rescue => e
+    rescue StandardError => e
       exceptions += 1
       puts "EXCEPTION (#{e.class})"
       puts "    Error: #{e.message}"
