@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20251001133259) do
+ActiveRecord::Schema.define(version: 20251007062336) do
 
   create_table "clusters", force: :cascade do |t|
     t.string   "name",       null: false
@@ -35,11 +35,16 @@ ActiveRecord::Schema.define(version: 20251001133259) do
   end
 
   create_table "skill_clusters", force: :cascade do |t|
-    t.integer  "skill_id",   null: false
-    t.integer  "cluster_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "skill_id",            null: false
+    t.integer  "cluster_id",          null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "outcome_id"
+    t.integer  "merge_with_skill_id"
+    t.text     "reason"
     t.index ["cluster_id"], name: "index_skill_clusters_on_cluster_id"
+    t.index ["merge_with_skill_id"], name: "index_skill_clusters_on_merge_with_skill_id"
+    t.index ["outcome_id"], name: "index_skill_clusters_on_outcome_id"
     t.index ["skill_id", "cluster_id"], name: "index_skill_clusters_on_skill_id_and_cluster_id", unique: true
     t.index ["skill_id"], name: "index_skill_clusters_on_skill_id"
   end
