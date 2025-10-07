@@ -30,6 +30,12 @@ Domain.all.each_with_index do |domain, domain_index|
     cluster_progress = "#{cluster_index + 1}/#{domain_clusters}"
     print "  [#{cluster_progress}] #{cluster.name}... "
 
+    output_filename = "skills_details_domain_#{domain.id}_cluster_#{cluster.id}.csv"
+    # if output_filename already exists, skip processing
+    if File.exist?(output_filename)
+      puts "SKIPPED (file exists)"
+      next
+    end
     valid_skills = cluster.skills.where(is_valid: true)
 
     # Skip if no skills in this cluster
@@ -53,7 +59,6 @@ Domain.all.each_with_index do |domain, domain_index|
         }
       end
     }
-    output_filename = "skills_details_domain_#{domain.id}_cluster_#{cluster.id}.csv"
 
     begin
       merge_start = Time.now
