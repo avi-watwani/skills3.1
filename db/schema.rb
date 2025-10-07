@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20251007062336) do
+ActiveRecord::Schema.define(version: 20251007065515) do
 
   create_table "clusters", force: :cascade do |t|
     t.string   "name",       null: false
@@ -32,6 +32,13 @@ ActiveRecord::Schema.define(version: 20251007062336) do
     t.integer  "http_status_code"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+  end
+
+  create_table "outcomes", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "skill_clusters", force: :cascade do |t|
